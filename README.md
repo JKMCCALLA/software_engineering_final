@@ -26,5 +26,5 @@ Venture if time allows: Re-implementing designs using angular/react preserving b
 
 Part I: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/ES5aBBAULidKv1luqVDsQ8gBIyBczo3DgW-8pE0QhKrMfg?e=frRT7U <br>
 
-Part II: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/EYXPOzSzNr9CkFca2va5VtgBn4DFIONWcb54lzr0KFXSEA?e=Wk9A6i <br<
+Part II: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/EYXPOzSzNr9CkFca2va5VtgBn4DFIONWcb54lzr0KFXSEA?e=Wk9A6i
 
