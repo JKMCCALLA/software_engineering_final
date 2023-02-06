@@ -22,6 +22,8 @@ Venture if time allows: Re-implementing designs using angular/react preserving b
 
 <img width="585" alt="Screen Shot 2023-02-05 at 11 56 39 PM" src="https://user-images.githubusercontent.com/59835986/216887108-650a0774-0b53-4325-887f-e741b37a9762.png"> <br>
 
+<img width="552" alt="Screen Shot 2023-02-06 at 3 04 37 PM" src="https://user-images.githubusercontent.com/59835986/217073634-ab740f02-cf11-4dad-9691-e78f7d333693.png"> <br>
+
 ## Demo <br>
 
 Part I: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/ES5aBBAULidKv1luqVDsQ8gBIyBczo3DgW-8pE0QhKrMfg?e=frRT7U <br>
@@ -32,6 +34,3 @@ Part II: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/EYXPO
 
 ![Screen_Shot_2023-02-05_at_6 40 10_PM](https://user-images.githubusercontent.com/59835986/217027637-d9c1e830-7a18-4<img width="829" alt="Screen Shot 2023-02-06 at 3 00 40 PM" src="https://user-images.githubusercontent.com/59835986/217072989-3924bc7b-46f5-4d1b-954c-fc1c03410c10.png">
 720-bd9c-e7a31be12b1d.png) <br>
-
-
-![Uploading Screen Shot 2023-02-06 at 3.00.40 PM.png…]()
