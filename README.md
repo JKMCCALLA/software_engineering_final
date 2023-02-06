@@ -23,3 +23,8 @@ Venture if time allows: Re-implementing designs using angular/react preserving b
 <img width="585" alt="Screen Shot 2023-02-05 at 11 56 39 PM" src="https://user-images.githubusercontent.com/59835986/216887108-650a0774-0b53-4325-887f-e741b37a9762.png"> <br>
 
 ## Demo <br>
+
+Part I: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/ES5aBBAULidKv1luqVDsQ8gBIyBczo3DgW-8pE0QhKrMfg?e=frRT7U <br>
+
+Part II: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/EYXPOzSzNr9CkFca2va5VtgBn4DFIONWcb54lzr0KFXSEA?e=Wk9A6i <br<
+
