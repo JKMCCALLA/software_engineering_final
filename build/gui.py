@@ -78,8 +78,9 @@ entry_1 = Entry(
     fg="#000716",
     highlightthickness=0,
     textvariable=USERNAME,
-    font=(40)
+    font=("Arial-BoldMT", int(25))
 )
+
 entry_1.place(
     x=402.06500244140625,
     y=344.8645935058594,
@@ -100,9 +101,9 @@ entry_2 = Entry(
     fg="#000716",
     highlightthickness=0,
     textvariable=PASSWORD,
-    font=(40),
-    show="*"
-)
+    show="*",
+    font=("Arial-BoldMT", int(25))
+    )
 entry_2.place(
     x=402.06500244140625,
     y=403.8954772949219,
@@ -154,6 +155,8 @@ button_1.place(
     width=127.5384521484375,
     height=40.875
 )
+window.bind('<Return>', Login)
+
 button_image_2 = PhotoImage(
     file=relative_to_assets("button_2.png"))
 button_2 = Button(
