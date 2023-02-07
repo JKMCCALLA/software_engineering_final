@@ -4,6 +4,7 @@
 
 Figma UI Share Link: https://www.figma.com/file/wvoJ8FcIMH0l7u0Ib11YmZ/LogIn-Page?node-id=0%3A1&t=8KeNgn5TPiVpjY0T-1 <br>
 Tkinter Designer (Helper Repo): https://github.com/ParthJadhav/Tkinter-Designer <br>
+SQLite Installer: https://sqlitebrowser.org/dl/ <br>
 Ecosystem: Python, SQLite, Tkinter, Figma
 
 ## Development Process <br>
