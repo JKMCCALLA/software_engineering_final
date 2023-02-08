@@ -37,6 +37,8 @@ Part II: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/EYXPO
 
 Multi-Page Support: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/EYEXhQXoZ2xOrFKFNaGMRTQBSjuheq25i8bHPixHbRNE7A?e=wXbClZ <br>
 
+Skills, Under Construction: https://usfedu-my.sharepoint.com/:v:/g/personal/jkmccalla_usf_edu/EcOqompLFr1DmTOVzrwPj_cBM7zJKXwn3znF3IFiqfyJtg?e=CR4Zab <br>
+
 ## PyTest Example <br>
 
 https://testdriven.io/blog/pytest-for-beginners/ <br>
