@@ -10,6 +10,7 @@ ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engi
 ASSETS_PATH_1 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame1")
 ASSETS_PATH_2 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame2")
 ASSETS_PATH_3 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame3")
+ASSETS_PATH_4 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame4")
 
 def relative_to_assets(path: str, pos: int) -> Path:
     if (pos == 0):
@@ -20,6 +21,8 @@ def relative_to_assets(path: str, pos: int) -> Path:
         return ASSETS_PATH_2 / Path(path)
     elif (pos == 3):
         return ASSETS_PATH_3 / Path(path)
+    elif (pos == 4):
+        return ASSETS_PATH_4/ Path(path)
 
 window = Tk()
 window.geometry("829x654")
@@ -29,8 +32,9 @@ homeFrame = Frame(window)
 optionsFrame = Frame(window)
 skillsFrame = Frame(window)
 undoneFrame = Frame(window)
+signFrame = Frame(window)
 
-for frame in (homeFrame, optionsFrame, skillsFrame, undoneFrame):
+for frame in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame):
     frame.grid(row=0,column=0, sticky='nsew')
 
 #===================================Frame & Canvas Initialization (Login Page)
@@ -62,7 +66,7 @@ canvas.create_rectangle(
 image_image_2 = PhotoImage(
     file=relative_to_assets("image_2.png", 0))
 image_2 = canvas.create_image(
-    146.0,
+    180,
     327.0,
     image=image_image_2
 )
@@ -212,11 +216,83 @@ canvasUndone.create_text(
     font=("Kreon Bold", 30 * -1)
 )
 
+#===========================Frame & Canvas Initialization (SignUp Page)
+canvasSign = Canvas(
+    signFrame,
+    bg = "#FFFFFF",
+    height = 654,
+    width = 829,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvasSign.place(x = 0, y = 0)
+imageSign_1 = PhotoImage(
+    file=relative_to_assets("image_1.png", 4))
+imageSign_1b = canvasSign.create_image(
+    572.3466796875,
+    140.26365661621094,
+    image=imageSign_1
+)
+
+canvasSign.create_rectangle(
+    364.0,
+    279.0,
+    773.0,
+    530.0,
+    fill="#FFFFFF",
+    outline="")
+
+imageSign_2 = PhotoImage(
+    file=relative_to_assets("image_2.png", 4))
+imageSign_2b = canvasSign.create_image(
+    146.0,
+    327.0,
+    image=imageSign_2
+)
+
+canvasSign.create_text(
+    521.0,
+    279.0,
+    anchor="nw",
+    text="Sign Up",
+    fill="#2578A9",
+    font=("Kreon Bold", 30 * -1)
+)
+
+canvasSign.create_text(
+    373.0,
+    353.0,
+    anchor="nw",
+    text="Username",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
+canvasSign.create_text(
+    390.0,
+    405.0,
+    anchor="nw",
+    text="First",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
+canvasSign.create_text(
+    391.0,
+    457.0,
+    anchor="nw",
+    text="Last ",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
 #==============================================Variables
 USERNAME = StringVar()
 PASSWORD = StringVar()
 
-#==============================================Form-Entry Objects
+#==============================================Form-Entry Objects (Home Page/ Login Page)
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png", 0))
 entry_bg_1 = canvas.create_image(
@@ -265,6 +341,70 @@ entry_2.place(
     height=46.30682373046875
 )
 
+#======================================================= Form-Entry Objects (SignUp Page)
+entrySign_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png", 4))
+entrySign_1b = canvasSign.create_image(
+    573.0,
+    364.0,
+    image = entrySign_1
+)
+entrySign_2 = Entry(
+    signFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0
+)
+entrySign_2.place(
+    x=493.0,
+    y=345.0,
+    width=160.0,
+    height=36.0
+)
+
+entrySign_3 = PhotoImage(
+    file=relative_to_assets("entry_2.png", 4))
+entrySign_3b = canvasSign.create_image(
+    573.0,
+    417.0,
+    image=entrySign_3
+)
+entrySign_4 = Entry(
+    signFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0
+)
+entrySign_4.place(
+    x=493.0,
+    y=398.0,
+    width=160.0,
+    height=36.0
+)
+
+entrySign_5 = PhotoImage(
+    file=relative_to_assets("entry_3.png", 4))
+entrySign_5b = canvasSign.create_image(
+    573.0,
+    470.0,
+    image=entrySign_5
+)
+entrySign_6 = Entry(
+    signFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0
+)
+entrySign_6.place(
+    x=493.0,
+    y=451.0,
+    width=160.0,
+    height=36.0
+)
+
 #==================================================Methods
 def nextPage(choice: int):
     if (choice == 0):
@@ -273,6 +413,10 @@ def nextPage(choice: int):
         skillsFrame.tkraise()
     elif (choice == 2):
         undoneFrame.tkraise()
+    elif (choice == 3):
+        signFrame.tkraise()
+    elif (choice == 4):
+        homeFrame.tkraise()
 
 # def Back():
 #     Home.destroy()
@@ -333,7 +477,7 @@ button_2 = Button(
     image=button_image_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("SignUp Button clicked"),
+    command=lambda: nextPage(3),
     relief="flat"
 )
 button_2.pack()
@@ -396,6 +540,24 @@ buttonOptions_3b.place(
     y=369.0,
     width=127.5384521484375,
     height=40.875
+)
+
+buttonReturn_Options = PhotoImage(
+    file=relative_to_assets("return.png", 0))
+buttonReturn_Options_b = Button(
+    optionsFrame,
+    image=buttonReturn_Options,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: nextPage(4),
+    relief="flat"
+)
+buttonReturn_Options_b.pack()
+buttonReturn_Options_b.place(
+    x=772.0,
+    y=16.0,
+    width=35.0,
+    height=35.0
 )
 
 #=========================================Button Declarations (Skills Page)
@@ -487,6 +649,80 @@ buttonSkills_5b.place(
     y=450.0,
     width=127.5384521484375,
     height=40.875
+)
+
+buttonReturn_Skills = PhotoImage(
+    file=relative_to_assets("return.png", 0))
+buttonReturn_Skills_b = Button(
+    skillsFrame,
+    image=buttonReturn_Skills,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: nextPage(0),
+    relief="flat"
+)
+buttonReturn_Skills_b.pack()
+buttonReturn_Skills_b.place(
+    x=772.0,
+    y=16.0,
+    width=35.0,
+    height=35.0
+)
+#=========Button Declarations (SignUp Page)
+buttonSign_6 = PhotoImage(
+    file=relative_to_assets("button_1.png", 4))
+buttonSign_6b = Button(
+    signFrame,
+    image=buttonSign_6,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: print("Signup button clicked"),
+    relief="flat"
+)
+buttonSign_6b.pack()
+buttonSign_6b.place(
+    x=509.0,
+    y=519.0,
+    width=127.5384521484375,
+    height=40.875
+)
+
+buttonReturn_Sign = PhotoImage(
+    file=relative_to_assets("return.png", 0))
+buttonReturn_Sign_b = Button(
+    signFrame,
+    image=buttonReturn_Sign,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: nextPage(4),
+    relief="flat"
+)
+buttonReturn_Sign_b.pack()
+buttonReturn_Sign_b.place(
+    x=772.0,
+    y=16.0,
+    width=35.0,
+    height=35.0
+)
+
+#===============================Button Declarations (Undone Frame)
+
+buttonReturn_Undone = PhotoImage(
+    file=relative_to_assets("return.png", 0))
+buttonReturn_Undone_b = Button(
+    undoneFrame,
+    image=buttonReturn_Undone,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: nextPage(4),
+    relief="flat"
+)
+buttonReturn_Undone_b.pack()
+buttonReturn_Undone_b.place(
+    x=772.0,
+    y=16.0,
+    width=35.0,
+    height=35.0
 )
 
 #==============================================Main Method
