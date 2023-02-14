@@ -11,6 +11,8 @@ ASSETS_PATH_1 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software En
 ASSETS_PATH_2 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame2")
 ASSETS_PATH_3 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame3")
 ASSETS_PATH_4 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame4")
+ASSETS_PATH_5 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame5")
+ASSETS_PATH_6 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame6")
 
 def relative_to_assets(path: str, pos: int) -> Path:
     if (pos == 0):
@@ -23,6 +25,10 @@ def relative_to_assets(path: str, pos: int) -> Path:
         return ASSETS_PATH_3 / Path(path)
     elif (pos == 4):
         return ASSETS_PATH_4/ Path(path)
+    elif (pos == 5):
+        return ASSETS_PATH_5/ Path(path)
+    elif (pos == 6):
+        return ASSETS_PATH_6/ Path(path)
 
 window = Tk()
 window.geometry("829x654")
@@ -33,8 +39,10 @@ optionsFrame = Frame(window)
 skillsFrame = Frame(window)
 undoneFrame = Frame(window)
 signFrame = Frame(window)
+jobFrame = Frame(window)
+postFrame = Frame(window)
 
-for frame in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame):
+for frame in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame):
     frame.grid(row=0,column=0, sticky='nsew')
 
 #===================================Frame & Canvas Initialization (Login Page)
@@ -215,7 +223,7 @@ canvasUndone.create_text(
     fill="#2578A9",
     font=("Kreon Bold", 30 * -1)
 )
-
+canvasUndone.pack()
 #===========================Frame & Canvas Initialization (SignUp Page)
 canvasSign = Canvas(
     signFrame,
@@ -287,11 +295,151 @@ canvasSign.create_text(
     fill="#2578A9",
     font=("Kreon Bold", 20 * -1)
 )
+canvasSign.pack()
+#============================= Frame & Canvas Initialization (Job Search Options Page)
 
+canvasJob = Canvas(
+    jobFrame,
+    bg = "#FFFFFF",
+    height = 654,
+    width = 829,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvasJob.place(x = 0, y = 0)
+imageJob_1= PhotoImage(
+    file=relative_to_assets("image_1.png", 5))
+imageJob_1b = canvasJob.create_image(
+    572.3466796875,
+    140.26365661621094,
+    image=imageJob_1
+)
+
+canvasJob.create_rectangle(
+    389.0,
+    279.0,
+    756.0,
+    621.0,
+    fill="#FFFFFF",
+    outline="")
+
+imageJob_2 = PhotoImage(
+    file=relative_to_assets("image_2.png", 5))
+imageJob_2b = canvasJob.create_image(
+    146.0,
+    327.0,
+    image=imageJob_2
+)
+
+canvasJob.create_text(
+    402.0,
+    283.0,
+    anchor="nw",
+    text="Job Search",
+    fill="#2578A9",
+    font=("Kreon Bold", 30 * -1)
+)
+canvasJob.pack()
+#===================================== Frame & Canvas Initialization (Post Job Screen Page)
+canvasPost = Canvas(
+    postFrame,
+    bg = "#FFFFFF",
+    height = 654,
+    width = 829,
+    bd = 0,
+    highlightthickness = 0,
+    relief = "ridge"
+)
+
+canvasPost.place(x = 0, y = 0)
+imagePost_1 = PhotoImage(
+    file=relative_to_assets("image_1.png", 6))
+imagePost_1b = canvasPost.create_image(
+    572.3466796875,
+    140.26365661621094,
+    image=imagePost_1
+)
+
+canvasPost.create_rectangle(
+    364.0,
+    258.0,
+    773.0,
+    587.0,
+    fill="#FFFFFF",
+    outline="")
+
+imagePost_2 = PhotoImage(
+    file=relative_to_assets("image_2.png", 6))
+imagePost_2b = canvasPost.create_image(
+    146.0,
+    327.0,
+    image=imagePost_2
+)
+
+canvasPost.create_text(
+    507.0,
+    258.0,
+    anchor="nw",
+    text="Post a Job",
+    fill="#2578A9",
+    font=("Kreon Bold", 30 * -1)
+)
+
+canvasPost.create_text(
+    373.0,
+    332.0,
+    anchor="nw",
+    text="Job Title",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
+canvasPost.create_text(
+    365.0,
+    384.0,
+    anchor="nw",
+    text="Description",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
+canvasPost.create_text(
+    370.0,
+    436.0,
+    anchor="nw",
+    text="Employer",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
+canvasPost.create_text(
+    373.0,
+    488.0,
+    anchor="nw",
+    text="Location",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
+canvasPost.create_text(
+    381.0,
+    541.0,
+    anchor="nw",
+    text="Salary",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+canvasPost.pack()
 #==============================================Variables
 USERNAME = StringVar()
 PASSWORD = StringVar()
-
+JOBTITLE = StringVar()
+DESCRIPTION = StringVar()
+EMPLOYER = StringVar()
+LOCATION = StringVar()
+SALARY = StringVar()
 #==============================================Form-Entry Objects (Home Page/ Login Page)
 entry_image_1 = PhotoImage(
     file=relative_to_assets("entry_1.png", 0))
@@ -404,7 +552,122 @@ entrySign_6.place(
     width=160.0,
     height=36.0
 )
+#==========Form-Entry Objects (Post Job Screen Page)
 
+entryPost_1 = PhotoImage(
+    file=relative_to_assets("entry_1.png", 6))
+entryPost_1b = canvasPost.create_image(
+    573.0,
+    343.0,
+    image=entryPost_1
+)
+jobTitle_2 = Entry(
+    postFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0, 
+    textvariable=JOBTITLE,
+    font=("Arial-BoldMT", int(25))
+)
+jobTitle_2.place(
+    x=493.0,
+    y=324.0,
+    width=160.0,
+    height=36.0
+)
+
+entryPost_3 = PhotoImage(
+    file=relative_to_assets("entry_2.png", 6))
+entryPost_3b = canvasPost.create_image(
+    573.0,
+    396.0,
+    image=entryPost_3
+)
+jobDescription_4 = Entry(
+    postFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0,
+    textvariable=DESCRIPTION,
+    font=("Arial-BoldMT", int(25))
+)
+jobDescription_4.place(
+    x=493.0,
+    y=377.0,
+    width=160.0,
+    height=36.0
+)
+
+entryPost_5 = PhotoImage(
+    file=relative_to_assets("entry_3.png", 6))
+entryPost_5b = canvasPost.create_image(
+    573.0,
+    449.0,
+    image=entryPost_5
+)
+employer_6 = Entry(
+    postFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0,
+    textvariable=EMPLOYER,
+    font=("Arial-BoldMT", int(25))
+)
+employer_6.place(
+    x=493.0,
+    y=430.0,
+    width=160.0,
+    height=36.0
+)
+
+entryPost_7 = PhotoImage(
+    file=relative_to_assets("entry_4.png", 6))
+entryPost_7b = canvasPost.create_image(
+    573.0,
+    502.0,
+    image=entryPost_7
+)
+location_8 = Entry(
+    postFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0,
+    textvariable=LOCATION,
+    font=("Arial-BoldMT", int(25))
+)
+location_8.place(
+    x=493.0,
+    y=483.0,
+    width=160.0,
+    height=36.0
+)
+
+entryPost_9 = PhotoImage(
+    file=relative_to_assets("entry_5.png", 6))
+entryPost_9b = canvasPost.create_image(
+    573.0,
+    555.0,
+    image=entryPost_9
+)
+salary_10 = Entry(
+    postFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0,
+    textvariable=SALARY,
+    font=("Arial-BoldMT", int(25))
+)
+salary_10.place(
+    x=493.0,
+    y=536.0,
+    width=160.0,
+    height=36.0
+)
 #==================================================Methods
 def nextPage(choice: int):
     if (choice == 0):
@@ -417,6 +680,10 @@ def nextPage(choice: int):
         signFrame.tkraise()
     elif (choice == 4):
         homeFrame.tkraise()
+    elif (choice == 5):
+        jobFrame.tkraise()
+    elif (choice == 6):
+        postFrame.tkraise()
 
 # def Back():
 #     Home.destroy()
@@ -449,6 +716,26 @@ def Login(event=None):
             PASSWORD.set("")   
     cursor.close()
     conn.close()
+
+def PostJob(event=None):
+    Database()
+    if (JOBTITLE.get() == "" or DESCRIPTION.get() == "" or EMPLOYER.get() == "" or
+        LOCATION.get() == "" or SALARY.get() == ""):
+        print("Please complete the required field!")
+    # else:
+        # cursor.execute("SELECT * FROM `jobs` WHERE `title` = ? AND `description` = ? AND `employer` = ? AND `location` = ? AND `salary` = ?", (JOBTITLE.get(), DESCRIPTION.get(), EMPLOYER.get(), LOCATION.get(), SALARY.get()))
+        # cursor.execute("""INSERT INTO SqliteDb_developers(id, name, email, joining_date, salary) VALUES (?,?,?,?,?)""")
+        # if cursor.fetchone() is not None:
+        #     nextPage(6)
+        #     USERNAME.set("")
+        #     PASSWORD.set("")
+        #     lambda: print("")
+        # else:
+        #     print("Invalid username or password")
+        #     USERNAME.set("")
+        #     PASSWORD.set("")   
+    # cursor.close()
+    # conn.close()
 
 #======================================================Button Declarations (Login Page)
 button_image_1 = PhotoImage(
@@ -496,7 +783,7 @@ buttonOptions_1b = Button(
     image=buttonOptions_1,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: nextPage(2),
+    command=lambda: nextPage(5),
     relief="flat"
 )
 buttonOptions_1b.pack()
@@ -704,7 +991,6 @@ buttonReturn_Sign_b.place(
     width=35.0,
     height=35.0
 )
-
 #===============================Button Declarations (Undone Frame)
 
 buttonReturn_Undone = PhotoImage(
@@ -725,6 +1011,80 @@ buttonReturn_Undone_b.place(
     height=35.0
 )
 
+#=============Button Declarations (Job Frame)
+
+buttonJob_1 = PhotoImage(
+    file=relative_to_assets("button_1.png", 5))
+buttonJob_1b = Button(
+    jobFrame,
+    image=buttonJob_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: nextPage(6),
+    relief="flat"
+)
+buttonJob_1b.pack()
+buttonJob_1b.place(
+    x=509.0,
+    y=342.0,
+    width=127.5384521484375,
+    height=40.875
+)
+
+buttonReturn_Job = PhotoImage(
+    file=relative_to_assets("return.png", 0))
+buttonReturn_Job_b = Button(
+    jobFrame,
+    image=buttonReturn_Job,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: nextPage(0),
+    relief="flat"
+)
+buttonReturn_Job_b.pack()
+buttonReturn_Job_b.place(
+    x=772.0,
+    y=16.0,
+    width=35.0,
+    height=35.0
+)
+#=============Button Declarations (Post Frame)
+
+buttonFrame_1 = PhotoImage(
+    file=relative_to_assets("button_1.png", 6))
+buttonFrame_1b = Button(
+    postFrame,
+    image=buttonFrame_1,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: PostJob(),
+    relief="flat"
+)
+buttonFrame_1b.pack()
+buttonFrame_1b.place(
+    x=507.0,
+    y=593.0,
+    width=127.5384521484375,
+    height=40.875
+)
+
+buttonReturn_Post = PhotoImage(
+    file=relative_to_assets("return.png", 0))
+buttonReturn_Post_b = Button(
+    postFrame,
+    image=buttonReturn_Post,
+    borderwidth=0,
+    highlightthickness=0,
+    command=lambda: nextPage(5),
+    relief="flat"
+)
+buttonReturn_Post_b.pack()
+buttonReturn_Post_b.place(
+    x=772.0,
+    y=16.0,
+    width=35.0,
+    height=35.0
+)
 #==============================================Main Method
 def loginPage():
 
