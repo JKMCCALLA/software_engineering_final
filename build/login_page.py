@@ -685,10 +685,6 @@ def nextPage(choice: int):
     elif (choice == 6):
         postFrame.tkraise()
 
-# def Back():
-#     Home.destroy()
-#     window.deiconify()
-
 def Database():
     global conn, cursor
     conn = sqlite3.connect("pythontut.db")
@@ -719,24 +715,21 @@ def Login(event=None):
 
 def PostJob(event=None):
     Database()
-    if (JOBTITLE.get() == "" or DESCRIPTION.get() == "" or EMPLOYER.get() == "" or
-        LOCATION.get() == "" or SALARY.get() == ""):
-        print("Please complete the required field!")
-    # else:
-        # cursor.execute("SELECT * FROM `jobs` WHERE `title` = ? AND `description` = ? AND `employer` = ? AND `location` = ? AND `salary` = ?", (JOBTITLE.get(), DESCRIPTION.get(), EMPLOYER.get(), LOCATION.get(), SALARY.get()))
-        # cursor.execute("""INSERT INTO SqliteDb_developers(id, name, email, joining_date, salary) VALUES (?,?,?,?,?)""")
-        # if cursor.fetchone() is not None:
-        #     nextPage(6)
-        #     USERNAME.set("")
-        #     PASSWORD.set("")
-        #     lambda: print("")
-        # else:
-        #     print("Invalid username or password")
-        #     USERNAME.set("")
-        #     PASSWORD.set("")   
-    # cursor.close()
-    # conn.close()
-
+    cursor.execute("SELECT * FROM jobs")
+    rows = cursor.fetchall()
+    if (len(rows) < 5):
+        if (JOBTITLE.get() == "" or DESCRIPTION.get() == "" or EMPLOYER.get() == "" or
+            LOCATION.get() == "" or SALARY.get() == ""):
+            print("Please complete the required field!")
+        else:
+            sql = ''' INSERT INTO jobs(title, description, employer, location, salary) VALUES (?,?,?,?,?) '''
+            task = (JOBTITLE.get(), DESCRIPTION.get(), EMPLOYER.get(), LOCATION.get(), SALARY.get())
+            cursor.execute(sql, task)
+            conn.commit()
+        cursor.close()
+        conn.close()
+    else:
+        print("Maximum number of records in database \n")
 #======================================================Button Declarations (Login Page)
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png", 0))
