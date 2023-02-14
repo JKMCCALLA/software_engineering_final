@@ -6,6 +6,7 @@ Figma UI Share Link: https://www.figma.com/file/wvoJ8FcIMH0l7u0Ib11YmZ/LogIn-Pag
 Tkinter Designer (Helper Repo): https://github.com/ParthJadhav/Tkinter-Designer <br>
 SQLite Installer: https://sqlitebrowser.org/dl/ <br>
 SQLite3 Documentation: https://www.digitalocean.com/community/tutorials/how-to-use-the-sqlite3-module-in-python-3 <br>
+SQLite3 INSERT: https://www.sqlitetutorial.net/sqlite-python/insert/ <br>
 Ecosystem: Python, SQLite, Tkinter, Figma
 
 ## Development Process <br>
