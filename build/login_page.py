@@ -6,13 +6,13 @@ from pathlib import Path
 from PIL import Image, ImageTk
 #===================================Assets Declaration
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame0")
-ASSETS_PATH_1 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame1")
-ASSETS_PATH_2 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame2")
-ASSETS_PATH_3 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame3")
-ASSETS_PATH_4 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame4")
-ASSETS_PATH_5 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame5")
-ASSETS_PATH_6 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame6")
+ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/grill/OneDrive/Desktop/root/school/sp23/cen/softeng_team2023/build/assets/frame0")
+ASSETS_PATH_1 = OUTPUT_PATH / Path(r"/Users/grill/OneDrive/Desktop/root/school/sp23/cen/softeng_team2023/build/assets/frame1")
+ASSETS_PATH_2 = OUTPUT_PATH / Path(r"/Users/grill/OneDrive/Desktop/root/school/sp23/cen/softeng_team2023/build/assets/frame2")
+ASSETS_PATH_3 = OUTPUT_PATH / Path(r"/Users/grill/OneDrive/Desktop/root/school/sp23/cen/softeng_team2023/build/assets/frame3")
+ASSETS_PATH_4 = OUTPUT_PATH / Path(r"/Users/grill/OneDrive/Desktop/root/school/sp23/cen/softeng_team2023/build/assets/frame4")
+ASSETS_PATH_5 = OUTPUT_PATH / Path(r"/Users/grill/OneDrive/Desktop/root/school/sp23/cen/softeng_team2023/build/assets/frame5")
+ASSETS_PATH_6 = OUTPUT_PATH / Path(r"/Users/grill/OneDrive/Desktop/root/school/sp23/cen/softeng_team2023/build/assets/frame6")
 
 def relative_to_assets(path: str, pos: int) -> Path:
     if (pos == 0):
@@ -56,6 +56,7 @@ canvas = Canvas(
     relief = "ridge"
 )
 canvas.place(x = 0, y = 0)
+
 image_image_1 = PhotoImage(
     file=relative_to_assets("image_1.png", 0))
 image_1 = canvas.create_image(
@@ -279,8 +280,17 @@ canvasSign.create_text(
 )
 
 canvasSign.create_text(
-    390.0,
+    373.0,
     405.0,
+    anchor="nw",
+    text="Password",
+    fill="#2578A9",
+    font=("Kreon Bold", 20 * -1)
+)
+
+canvasSign.create_text(
+    390.0,
+    457.0,
     anchor="nw",
     text="First",
     fill="#2578A9",
@@ -289,7 +299,7 @@ canvasSign.create_text(
 
 canvasSign.create_text(
     391.0,
-    457.0,
+    507.0,
     anchor="nw",
     text="Last ",
     fill="#2578A9",
@@ -504,11 +514,27 @@ entrySign_2 = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    textvariable=USERNAME
 )
 entrySign_2.place(
     x=493.0,
     y=345.0,
+    width=160.0,
+    height=36.0
+)
+
+entrySign_25 = Entry(
+    signFrame,
+    bd=0,
+    bg="#D9D9D9",
+    fg="#000716",
+    highlightthickness=0,
+    textvariable=PASSWORD
+)
+entrySign_25.place(
+    x=493.0,
+    y=395.0,
     width=160.0,
     height=36.0
 )
@@ -525,7 +551,8 @@ entrySign_4 = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    textvariable=FIRST
 )
 entrySign_4.place(
     x=493.0,
@@ -546,11 +573,12 @@ entrySign_6 = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    textvariable=LAST
 )
 entrySign_6.place(
     x=493.0,
-    y=451.0,
+    y=500.0,
     width=160.0,
     height=36.0
 )
@@ -715,22 +743,61 @@ def Login(event=None):
     cursor.close()
     conn.close()
 
-# def Signup(event=None):
-#     Database()
-#     cursor.execute("SELECT * FROM member")
-#     rows = cursor.fetchall()
-#     if (len(rows) < 5):
-#         if (USERNAME.get() == "" or FIRST.get() == "" or LAST.get() == ""):
-#             print("Please complete the required field!")
-#         else:
-#             sql = ''' INSERT INTO member(user, first, last) VALUES (?,?,?) '''
-#             task = (USERNAME.get(), FIRST.get(), LAST.get())
-#             cursor.execute(sql, task)
-#             conn.commit()
-#         cursor.close()
-#         conn.close()
-#     else:
-#         print("Maximum number of records in database \n")
+def Signup(event=None):
+    Database()
+    cursor.execute("SELECT * FROM member")
+    rows = cursor.fetchall()
+    if (len(rows) < 5):
+        if (USERNAME.get() == "" or FIRST.get() == "" or LAST.get() == ""):
+            print("Please complete the required field!")
+        else:
+            isValid = isSignupInfoValid()
+            if isValid:
+                sql = "INSERT INTO member(username, first, last) VALUES (?,?,?)"
+                task = (USERNAME.get(), FIRST.get(), LAST.get())
+                cursor.execute(sql, task)
+                conn.commit()
+        cursor.close()
+        conn.close()
+    else:
+        # Remove all member entries for debugging
+        cursor.execute('DELETE FROM member')
+        conn.commit()
+        cursor.close()
+        conn.close()
+        print("Maximum number of records in database \n")
+
+
+def isSignupInfoValid():
+    password = PASSWORD.get()
+    print(password, len(password))
+    containsUpper = False
+    containsNumber = False
+    containsSpecialCharacter = False
+
+    for letter in password:
+        if letter.isupper():
+            containsUpper = True
+        if letter.isdigit():
+            containsNumber = True
+        if letter.isalnum() != True:
+            containsSpecialCharacter = True
+
+    if len(password) < 8 or len(password) > 12:
+        print('Password is either too long or too short')
+        return False
+    if containsUpper != True:
+        print('Password must contain uppercase letter')
+        return False
+    if containsNumber != True:
+        print('Passowrd must contain a number')
+        return False
+    if containsSpecialCharacter != True:
+        print('Password doesn\'t contain a special character')
+        return False
+
+    return True
+    
 
 def PostJob(event=None):
     Database()
@@ -975,13 +1042,13 @@ buttonSign_6b = Button(
     image=buttonSign_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("Signup button clicked"),
+    command=lambda: Signup(),
     relief="flat"
 )
 buttonSign_6b.pack()
 buttonSign_6b.place(
     x=509.0,
-    y=519.0,
+    y=550.0,
     width=127.5384521484375,
     height=40.875
 )
