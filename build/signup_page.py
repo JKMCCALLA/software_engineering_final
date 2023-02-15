@@ -135,19 +135,6 @@ entry_2.place(
     height=36.0
 )
 
-entrySign_25 = Entry(
-    bd=0,
-    bg="#D9D9D9",
-    fg="#000716",
-    highlightthickness=0,
-)
-entrySign_25.place(
-    x=493.0,
-    y=395.0,
-    width=160.0,
-    height=36.0
-)
-
 entry_image_3 = PhotoImage(
     file=relative_to_assets("entry_3.png"))
 entry_bg_3 = canvas.create_image(
