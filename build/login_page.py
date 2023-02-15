@@ -6,13 +6,13 @@ from pathlib import Path
 from PIL import Image, ImageTk
 #===================================Assets Declaration
 OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame0")
-ASSETS_PATH_1 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame1")
-ASSETS_PATH_2 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame2")
-ASSETS_PATH_3 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame3")
-ASSETS_PATH_4 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame4")
-ASSETS_PATH_5 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame5")
-ASSETS_PATH_6 = OUTPUT_PATH / Path(r"/Users/jordanemccalla/Downloads/Software Engineering/softeng_team2023/build/assets/frame6")
+ASSETS_PATH = OUTPUT_PATH / Path(r"./assets/frame0")
+ASSETS_PATH_1 = OUTPUT_PATH / Path(r"./assets/frame1")
+ASSETS_PATH_2 = OUTPUT_PATH / Path(r"./assets/frame2")
+ASSETS_PATH_3 = OUTPUT_PATH / Path(r"./assets/frame3")
+ASSETS_PATH_4 = OUTPUT_PATH / Path(r"./assets/frame4")
+ASSETS_PATH_5 = OUTPUT_PATH / Path(r"./assets/frame5")
+ASSETS_PATH_6 = OUTPUT_PATH / Path(r"./assets/frame6")
 
 def relative_to_assets(path: str, pos: int) -> Path:
     if (pos == 0):
@@ -714,8 +714,8 @@ def Login(event=None):
             PASSWORD.set("")   
     cursor.close()
     conn.close()
-
-# def Signup(event=None):
+#
+#def Signup(event=None):
 #     Database()
 #     cursor.execute("SELECT * FROM member")
 #     rows = cursor.fetchall()
