@@ -504,7 +504,8 @@ entrySign_2 = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    textvariable=USERNAME
 )
 entrySign_2.place(
     x=493.0,
@@ -525,7 +526,8 @@ entrySign_4 = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    textvariable=FIRST
 )
 entrySign_4.place(
     x=493.0,
@@ -546,7 +548,8 @@ entrySign_6 = Entry(
     bd=0,
     bg="#D9D9D9",
     fg="#000716",
-    highlightthickness=0
+    highlightthickness=0,
+    textvariable=LAST
 )
 entrySign_6.place(
     x=493.0,
@@ -715,6 +718,26 @@ def Login(event=None):
     cursor.close()
     conn.close()
 
+def Signup(event=None):
+    Database()
+    cursor.execute("SELECT * FROM member")
+    rows = cursor.fetchall()
+    if (len(rows) < 5):
+        if (USERNAME.get() == "" or FIRST.get() == "" or LAST.get() == ""):
+            print("Please complete the required field!")
+        else:
+            if (isSignupInfoValid()):
+                sql = ''' INSERT INTO member(username, first, last) VALUES (?,?,?) '''
+                task = (USERNAME.get(), FIRST.get(), LAST.get())
+                cursor.execute(sql, task)
+                conn.commit()
+        cursor.close()
+        conn.close()
+    else:
+        print("Maximum number of records in database \n")
+        cursor.close()
+        conn.close()
+
 def PostJob(event=None):
     Database()
     cursor.execute("SELECT * FROM jobs")
@@ -732,6 +755,38 @@ def PostJob(event=None):
         conn.close()
     else:
         print("Maximum number of records in database \n")
+
+def isSignupInfoValid():
+     
+     password = PASSWORD.get()
+     containsUpper = False
+     containsNumber = False
+     containsSpecialCharacter = False
+     finalBool = False
+
+     for letter in password:
+         if letter.isupper():
+             containsUpper = True
+         if letter.isdigit():
+             containsNumber = True
+         if letter.isalnum() != True:
+             containsSpecialCharacter = True
+
+     if len(password) < 8 or len(password) > 12:
+         print('Password is either too long or too short')
+         finalBool = False
+     if containsUpper != True:
+         print('Password must contain uppercase letter')
+         finalBool = False
+     if containsNumber != True:
+         print('Passowrd must contain a number')
+         finalBool = False
+     if containsSpecialCharacter != True:
+         print('Password doesn\'t contain a special character')
+         finalBool = False
+
+    #  return finalBool // Enabled when the SignUp option has a password field added
+     return True 
 #======================================================Button Declarations (Login Page)
 button_image_1 = PhotoImage(
     file=relative_to_assets("button_1.png", 0))
@@ -958,7 +1013,7 @@ buttonSign_6b = Button(
     image=buttonSign_6,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("Signup button clicked"),
+    command=lambda: Signup(),
     relief="flat"
 )
 buttonSign_6b.pack()
