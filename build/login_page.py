@@ -731,6 +731,7 @@ def Signup(event=None):
                 task = (USERNAME.get(), FIRST.get(), LAST.get())
                 cursor.execute(sql, task)
                 conn.commit()
+                nextPage(4)
         cursor.close()
         conn.close()
     else:
