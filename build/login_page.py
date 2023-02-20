@@ -714,23 +714,6 @@ def Login(event=None):
             PASSWORD.set("")   
     cursor.close()
     conn.close()
-#
-#def Signup(event=None):
-#     Database()
-#     cursor.execute("SELECT * FROM member")
-#     rows = cursor.fetchall()
-#     if (len(rows) < 5):
-#         if (USERNAME.get() == "" or FIRST.get() == "" or LAST.get() == ""):
-#             print("Please complete the required field!")
-#         else:
-#             sql = ''' INSERT INTO member(user, first, last) VALUES (?,?,?) '''
-#             task = (USERNAME.get(), FIRST.get(), LAST.get())
-#             cursor.execute(sql, task)
-#             conn.commit()
-#         cursor.close()
-#         conn.close()
-#     else:
-#         print("Maximum number of records in database \n")
 
 def PostJob(event=None):
     Database()
