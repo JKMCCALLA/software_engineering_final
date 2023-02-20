@@ -73,7 +73,7 @@ buttonOptions_2b = Button(
     image=buttonOptions_2,
     borderwidth=0,
     highlightthickness=0,
-    command=lambda: print("button_2 clicked"),
+    command=lambda: Login,
     relief="flat"
 )
 buttonOptions_2b.place(
