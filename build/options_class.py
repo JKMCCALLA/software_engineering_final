@@ -10,9 +10,6 @@ class optionsFrame(Frame):
  
             OUTPUT_PATH = Path(__file__).parent
             ASSETS_PATH = OUTPUT_PATH / Path(r"./assets/frame1")
-<<<<<<< Updated upstream
-
-=======
             
 
             self.USERNAME = StringVar()  
@@ -22,7 +19,6 @@ class optionsFrame(Frame):
             (self.USERNAME).set(config["user"]["username"])
             (self.FIRST).set(config["user"]["first"])
             (self.LAST).set(config["user"]["last"])
->>>>>>> Stashed changes
             #===============Canvas Objects
             
             canvasOptions = Canvas(
@@ -62,11 +58,7 @@ class optionsFrame(Frame):
                 534.0,
                 313.0,
                 anchor="nw",
-<<<<<<< Updated upstream
-                text="Hi {User}",
-=======
                 text=f"""Hi {controller.ConfigLoad()["user"]["first"]}""",
->>>>>>> Stashed changes
                 fill="#000000",
                 font=("Kreon Bold", 20 * -1)
             )
@@ -104,7 +96,7 @@ class optionsFrame(Frame):
             )
             buttonOptions_2b.pack()
             buttonOptions_2b.place(
-                x=509.0,
+                x=433.0,
                 y=424.0,
                 width=127.5384521484375,
                 height=40.875
@@ -127,8 +119,6 @@ class optionsFrame(Frame):
                 height=40.875
             )
 
-<<<<<<< Updated upstream
-=======
             self.buttonOptions_4 = buttonOptions_4 = PhotoImage(
                  file=ASSETS_PATH / Path("button_4.png"))
             buttonOptions_4b = Button(
@@ -147,7 +137,6 @@ class optionsFrame(Frame):
                 height=40.875
             )
 
->>>>>>> Stashed changes
             self.buttonReturn_Options = buttonReturn_Options = PhotoImage(
                  file=ASSETS_PATH / Path("return.png"))
             buttonReturn_Options_b = Button(

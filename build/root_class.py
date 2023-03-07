@@ -8,10 +8,7 @@ from skills_class import skillsFrame
 from undone_class import undoneFrame
 from job_class import jobFrame
 from post_class import postFrame
-<<<<<<< Updated upstream
-=======
 from friendlist_class import friendlistFrame
->>>>>>> Stashed changes
 import sqlite3
 import json
 
@@ -133,13 +130,7 @@ class windows(Tk):
                     self.getFriends()
                     self.renderPages()
                     self.nextPage(optionsFrame)
-<<<<<<< Updated upstream
-                    (self.USERNAME).set("")
-                    (self.PASSWORD).set("")
-                    lambda: print("")
-=======
                     print("supposed to go to the next page")
->>>>>>> Stashed changes
                 else:
                     print("Invalid username or password")
                     (self.USERNAME).set("")
@@ -183,9 +174,6 @@ class windows(Tk):
                 conn.close()
             else:
                 print("Maximum number of records in database \n")
-<<<<<<< Updated upstream
-
-=======
                 
         ''' def addFriend(self):
             user, friend = self.USERNAME, self.USERFRIEND
@@ -211,7 +199,6 @@ class windows(Tk):
             except:
                 return -1
         
->>>>>>> Stashed changes
         def isSignupInfoValid(self):
             
             password = self.PASSWORD.get()
