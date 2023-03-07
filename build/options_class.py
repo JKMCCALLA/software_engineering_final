@@ -10,7 +10,19 @@ class optionsFrame(Frame):
  
             OUTPUT_PATH = Path(__file__).parent
             ASSETS_PATH = OUTPUT_PATH / Path(r"./assets/frame1")
+<<<<<<< Updated upstream
 
+=======
+            
+
+            self.USERNAME = StringVar()  
+            self.FIRST = StringVar()
+            self.LAST = StringVar()
+            config = controller.ConfigLoad()
+            (self.USERNAME).set(config["user"]["username"])
+            (self.FIRST).set(config["user"]["first"])
+            (self.LAST).set(config["user"]["last"])
+>>>>>>> Stashed changes
             #===============Canvas Objects
             
             canvasOptions = Canvas(
@@ -50,7 +62,11 @@ class optionsFrame(Frame):
                 534.0,
                 313.0,
                 anchor="nw",
+<<<<<<< Updated upstream
                 text="Hi {User}",
+=======
+                text=f"""Hi {controller.ConfigLoad()["user"]["first"]}""",
+>>>>>>> Stashed changes
                 fill="#000000",
                 font=("Kreon Bold", 20 * -1)
             )
@@ -100,7 +116,7 @@ class optionsFrame(Frame):
                 image=buttonOptions_3,
                 borderwidth=0,
                 highlightthickness=0,
-                command=lambda: controller.changePage("undoneFrame"),
+                command=lambda:controller.changePage("friendListFrame"),
                 relief="flat"
             )
             buttonOptions_3b.pack()
@@ -111,6 +127,27 @@ class optionsFrame(Frame):
                 height=40.875
             )
 
+<<<<<<< Updated upstream
+=======
+            self.buttonOptions_4 = buttonOptions_4 = PhotoImage(
+                 file=ASSETS_PATH / Path("button_4.png"))
+            buttonOptions_4b = Button(
+                self,
+                image=buttonOptions_4,
+                borderwidth=0,
+                highlightthickness=0,
+                command=lambda: controller.changePage("undoneFrame"),
+                relief="flat"
+            )
+            buttonOptions_4b.pack()
+            buttonOptions_4b.place(
+                x=573.0,
+                y=424.0,
+                width=127.5384521484375,
+                height=40.875
+            )
+
+>>>>>>> Stashed changes
             self.buttonReturn_Options = buttonReturn_Options = PhotoImage(
                  file=ASSETS_PATH / Path("return.png"))
             buttonReturn_Options_b = Button(

@@ -8,7 +8,13 @@ from skills_class import skillsFrame
 from undone_class import undoneFrame
 from job_class import jobFrame
 from post_class import postFrame
+<<<<<<< Updated upstream
+=======
+from friendlist_class import friendlistFrame
+>>>>>>> Stashed changes
 import sqlite3
+import json
+
 
 class windows(Tk):
         def __init__(self, *args, **kwargs):
@@ -31,8 +37,8 @@ class windows(Tk):
             self.configure(bg = "#FFFFFF")
 
             #Creating a default frame and assigning it to a container
-            container = Frame(self)
-            container.pack(side="top", fill="both", expand=True)
+            self.container = Frame(self)
+            self.container.pack(side="top", fill="both", expand=True)
 
             #Allows window to be resizable
             self.resizable(False, False)            
@@ -40,14 +46,25 @@ class windows(Tk):
             #Creating a ditionary of frames
             self.frames = {}
 
+            #creating the config
+            with open("config.json", "w") as p:
+                    data = {"user": {
+                                    "username": "", "first": "", "last": ""},
+                                    "friends": {}}
+                    json.dump(data, p)
+
             #Adding the potential frames to the dictionary
-            for F in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame):            
-                frame = F(container, self)
-                self.frames[F] = frame
-                frame.grid(row=0,column=0, sticky='nsew')
+            self.renderPages()
 
             self.nextPage(homeFrame)
             
+        def renderPages(self):
+            for F in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame, friendlistFrame):  
+                
+                frame = F(self.container, self)
+                self.frames[F] = frame
+                frame.grid(row=0,column=0, sticky='nsew')
+
         def nextPage(self, cont):
             frame = self.frames[cont]
             # raises the current frame to the top
@@ -68,6 +85,8 @@ class windows(Tk):
                 self.nextPage(jobFrame)
             if (cont == "postFrame"):
                 self.nextPage(postFrame)
+            if (cont == "friendListFrame"):
+                self.nextPage(friendlistFrame)
     
         def Database(self):
             global conn, cursor
@@ -78,24 +97,53 @@ class windows(Tk):
             if cursor.fetchone() is None:
                 cursor.execute("INSERT INTO `member` (username, password) VALUES('admin', 'admin')")
                 conn.commit()
-
+        
+        def ConfigLoad(self):
+            data = {}
+            try:         
+                with open("config.json", "r") as read_it:
+                    data = json.load(read_it)
+            except:
+                return -1
+            return data
+        
+        def ConfigWrite(self, data):
+            try:
+                with open("config.json", "w") as p:
+                    json.dump(data, p)
+                return 1
+            except:
+                return -1
+        
         def Login(self):
             self.Database()
             if (self.USERNAME).get() == "" or (self.PASSWORD).get() == "":
                 print("Please complete the required field!")
             else:
                 cursor.execute("SELECT * FROM `member` WHERE `username` = ? AND `password` = ?", (self.USERNAME.get(), self.PASSWORD.get()))
-                if cursor.fetchone() is not None:
+                row = cursor.fetchone()
+                if row is not None:
+                    data = {"user":{
+                                    "username": row[0],
+                                    "first": row[2],
+                                    "last": row[3] 
+                                }
+                            }
+                    self.ConfigWrite(data)
+                    self.getFriends()
+                    self.renderPages()
                     self.nextPage(optionsFrame)
+<<<<<<< Updated upstream
                     (self.USERNAME).set("")
                     (self.PASSWORD).set("")
                     lambda: print("")
+=======
+                    print("supposed to go to the next page")
+>>>>>>> Stashed changes
                 else:
                     print("Invalid username or password")
                     (self.USERNAME).set("")
                     (self.PASSWORD).set("")   
-            cursor.close()
-            conn.close()
 
         def Signup(self):
             self.Database()
@@ -135,7 +183,35 @@ class windows(Tk):
                 conn.close()
             else:
                 print("Maximum number of records in database \n")
+<<<<<<< Updated upstream
 
+=======
+                
+        ''' def addFriend(self):
+            user, friend = self.USERNAME, self.USERFRIEND
+            self.Database()
+        '''
+        def getFriends(self):
+            configData = self.ConfigLoad()
+            self.Database()
+            
+            friends = cursor.execute("SELECT * FROM friends where username = (?)", (configData["user"]["username"],)).fetchall()
+            conn.commit()
+
+            friends = [i[1] for i in friends]
+            f_dict = {}
+            for i in range(len(friends)):
+                    f_dict[f"friend_{i + 1}"] = friends[i]
+            configData["friends"] = f_dict
+            cursor.close
+            conn.close()
+            try:
+                self.ConfigWrite(configData)  
+                return 1
+            except:
+                return -1
+        
+>>>>>>> Stashed changes
         def isSignupInfoValid(self):
             
             password = self.PASSWORD.get()
