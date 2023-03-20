@@ -122,7 +122,7 @@ class windows(Tk):
             self.Database()
             cursor.execute("SELECT * FROM jobs")
             rows = cursor.fetchall()
-            if (len(rows) < 5):
+            if (len(rows) < 10):
                 if (self.JOBTITLE.get() == "" or self.DESCRIPTION.get() == "" or self.EMPLOYER.get() == "" or
                     self.LOCATION.get() == "" or self.SALARY.get() == ""):
                     print("Please complete the required field!")
@@ -135,6 +135,34 @@ class windows(Tk):
                 conn.close()
             else:
                 print("Maximum number of records in database \n")
+
+        def DeleteJob(self, title):
+            self.Database()
+            cursor.execute("SELECT * FROM jobs")
+            rows = cursor.fetchall()
+            if (len(rows) == 0):
+                sql = ''' DELETE FROM jobs WHERE title = ? '''
+                task = title
+                cursor.execute(sql, task)
+                conn.commit()
+                cursor.close()
+            else:
+                print("No records exist")
+
+        def GetJob(self, user):
+            self.Database()
+            cursor.execute("SELECT * FROM applied")
+            rows = cursor.fetchall()
+            if (len(rows) == 0):
+                sql = ''' SELECT from applied where student = ? '''
+                task = user
+                cursor.execute(sql, task)
+                listReturn = cursor.fetchall()
+                cursor.close()
+            else:
+                print("No applied jobs exist")
+            return listReturn
+
 
         def isSignupInfoValid(self):
             

@@ -94,4 +94,19 @@ class jobFrame(Frame):
                 height=35.0
             )
 
+            OPTIONS = ["MOFFITT", "USF"] 
+
+            variable = StringVar(canvasJob)
+            if (len(OPTIONS) > 0):
+                variable.set(OPTIONS[0]) # default value
+
+            w = OptionMenu(canvasJob, variable, *OPTIONS)
+            w.pack()
+            w.place(
+                x=560.0,
+                y=425.0,
+                width=35.0,
+                height=35.0
+            )
+
 
