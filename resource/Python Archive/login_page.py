@@ -41,8 +41,9 @@ undoneFrame = Frame(window)
 signFrame = Frame(window)
 jobFrame = Frame(window)
 postFrame = Frame(window)
+profileFrame = Frame(window)
 
-for frame in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame):
+for frame in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame, profileFrame):
     frame.grid(row=0,column=0, sticky='nsew')
 
 #===================================Frame & Canvas Initialization (Login Page)
@@ -689,6 +690,8 @@ def nextPage(choice: int):
         jobFrame.tkraise()
     elif (choice == 6):
         postFrame.tkraise()
+    elif (choice == 7):
+        profileFrame.tkraise()
 
 def Database():
     global conn, cursor

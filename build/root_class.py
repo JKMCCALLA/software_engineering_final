@@ -8,6 +8,7 @@ from skills_class import skillsFrame
 from undone_class import undoneFrame
 from job_class import jobFrame
 from post_class import postFrame
+from profile_class import profileFrame
 import sqlite3
 
 class windows(Tk):
@@ -41,7 +42,7 @@ class windows(Tk):
             self.frames = {}
 
             #Adding the potential frames to the dictionary
-            for F in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame):            
+            for F in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame, profileFrame):            
                 frame = F(container, self)
                 self.frames[F] = frame
                 frame.grid(row=0,column=0, sticky='nsew')
@@ -68,12 +69,14 @@ class windows(Tk):
                 self.nextPage(jobFrame)
             if (cont == "postFrame"):
                 self.nextPage(postFrame)
+            if (cont == "profileFrame"):
+                self.nextPage(profileFrame)
     
         def Database(self):
             global conn, cursor
             conn = sqlite3.connect("pythontut.db")
             cursor = conn.cursor()
-            cursor.execute("CREATE TABLE IF NOT EXISTS `member` (mem_id INTEGER NOT NULL PRIMARY KEY  AUTOINCREMENT, username TEXT, password TEXT)")       
+            cursor.execute("CREATE TABLE IF NOT EXISTS `member` (mem_id INTEGER NOT NULL PRIMARY KEY  AUTOINCREMENT, username TEXT, password TEXT, name TEXT, tagline TEXT)")       
             cursor.execute("SELECT * FROM `member` WHERE `username` = 'admin' AND `password` = 'admin'")
             if cursor.fetchone() is None:
                 cursor.execute("INSERT INTO `member` (username, password) VALUES('admin', 'admin')")
@@ -163,9 +166,23 @@ class windows(Tk):
                 print("No applied jobs exist")
             return listReturn
 
+        def updateMemberName(self, mem_id, new_name):
+            self.Database()
+            cursor.execute("UPDATE member SET name = ? WHERE mem_id = ?", (new_name, mem_id))
+            conn.commit()
+            cursor.close()
+            conn.close()
+            print("Member name updated successfully")
+
+        def updateMemberTagline(self, mem_id, new_tagline):
+            self.Database()
+            cursor.execute("UPDATE member SET tagline = ? WHERE mem_id = ?", (new_tagline, mem_id))
+            conn.commit()
+            cursor.close()
+            conn.close()
+            print("Member tagline updated successfully")
 
         def isSignupInfoValid(self):
-            
             password = self.PASSWORD.get()
             containsUpper = False
             containsNumber = False
