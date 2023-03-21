@@ -11,11 +11,11 @@ class profileFrame(Frame):
         OUTPUT_PATH = Path(__file__).parent
         ASSETS_PATH = OUTPUT_PATH / Path(r"./assets/frame7")
 
-        # Add these lines to create StringVar variables for name and tagline
+        # Create StringVar variables for name and tagline
         self.name_text = StringVar()
         self.tagline_text = StringVar()
 
-        # Add these lines to create the name and tagline labels
+        # Name and tagline labels
         self.name_label = Label(self, textvariable=self.name_text, font=("Kreon Bold", 24 * -1), bg="#FFFFFF")
         self.name_label.place(x=30, y=30)
         self.tagline_label = Label(self, textvariable=self.tagline_text, font=("Kreon Regular", 20 * -1), bg="#FFFFFF")
