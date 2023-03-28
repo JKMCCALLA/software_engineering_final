@@ -140,10 +140,8 @@ class windows(Tk):
             self.Database()
             cursor.execute("SELECT * FROM jobs")
             rows = cursor.fetchall()
-            if (len(rows) == 0):
-                sql = ''' DELETE FROM jobs WHERE title = ? '''
-                task = title
-                cursor.execute(sql, task)
+            if (len(rows) > 0):
+                cursor.execute("DELETE FROM jobs WHERE title = ?", [(title)])
                 conn.commit()
                 cursor.close()
             else:
@@ -151,18 +149,33 @@ class windows(Tk):
 
         def GetJob(self, user):
             self.Database()
-            cursor.execute("SELECT * FROM applied")
+            cursor.execute(''' SELECT * FROM applied ''')
             rows = cursor.fetchall()
-            if (len(rows) == 0):
-                sql = ''' SELECT from applied where student = ? '''
-                task = user
-                cursor.execute(sql, task)
+            if (len(rows) > 0):
+                cursor.execute("SELECT * FROM applied WHERE student = ?", [(user)])
                 listReturn = cursor.fetchall()
+                conn.commit()
                 cursor.close()
             else:
                 print("No applied jobs exist")
             return listReturn
-
+        
+        def sendMessage(self, user, message):
+            self.Database()
+            cursor.execute("SELECT * FROM users WHERE user = ? AND status = ?", [(user), "online"])
+            rows = cursor.fetchall()
+            if (len(rows) > 0):
+                cursor.execute("INSERT INTO `messages` (message, user) VALUES(?, ?)", [(message), (user)])
+                conn.commit() 
+                cursor.close()
+            else:
+                print("User can not be found or, user is not online")
+        
+        def getOnlineList(self):
+            self.Database()
+            cursor.execute("SELECT * FROM users WHERE status = ?", ["online"])
+            rows = cursor.fetchall()
+            return rows
 
         def isSignupInfoValid(self):
             
