@@ -103,9 +103,9 @@ class jobFrame(Frame):
             w = OptionMenu(canvasJob, variable, *OPTIONS)
             w.pack()
             w.place(
-                x=560.0,
+                x=525.0,
                 y=425.0,
-                width=35.0,
+                width=80.0,
                 height=35.0
             )
 

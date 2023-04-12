@@ -139,16 +139,17 @@ class windows(Tk):
             if (len(rows) < 10):
                 if (self.JOBTITLE.get() == "" or self.DESCRIPTION.get() == "" or self.EMPLOYER.get() == "" or
                     self.LOCATION.get() == "" or self.SALARY.get() == ""):
-                    print("Please complete the required field!")
+                    messagebox.showinfo(message="Please complete the required field!")
                 else:
                     sql = ''' INSERT INTO jobs(title, description, employer, location, salary) VALUES (?,?,?,?,?) '''
                     task = (self.JOBTITLE.get(), self.DESCRIPTION.get(), self.EMPLOYER.get(), self.LOCATION.get(), self.SALARY.get())
                     cursor.execute(sql, task)
                     conn.commit()
+                    messagebox.showinfo(message="Job posted successfully")
                 cursor.close()
                 conn.close()
             else:
-                print("Maximum number of records in database \n")
+                messagebox.showinfo(message="Maximum number of records in database \n")
 
         def FindPerson(self):
             self.Database()

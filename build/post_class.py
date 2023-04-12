@@ -227,7 +227,7 @@ class postFrame(Frame):
                 image=buttonFrame_1,
                 borderwidth=0,
                 highlightthickness=0,
-                command=lambda: controller.PostJob,
+                command=controller.PostJob,
                 relief="flat"
             )
             buttonFrame_1b.pack()
