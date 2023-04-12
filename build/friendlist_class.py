@@ -1,5 +1,6 @@
 #===================================Library Definitions
 from tkinter import *
+from tkinter import messagebox
 from tkinter import Tk, Canvas, Entry, Text, Button, PhotoImage
 from pathlib import Path
 from PIL import Image, ImageTk
@@ -98,7 +99,7 @@ class friendlistFrame(Frame):
                                 image=message,
                                 borderwidth=0,
                                 highlightthickness=0,
-                                command=lambda: controller.changePage("undoneFrame"),
+                                command=lambda: messagebox.showinfo(message="Message request sent succesfully"),
                                 relief="flat"
                             )
                 
