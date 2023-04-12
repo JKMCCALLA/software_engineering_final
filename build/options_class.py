@@ -100,7 +100,7 @@ class optionsFrame(Frame):
                 image=buttonOptions_3,
                 borderwidth=0,
                 highlightthickness=0,
-                command=lambda: controller.changePage("undoneFrame"),
+                command=lambda: controller.changePage("friendFrame"),
                 relief="flat"
             )
             buttonOptions_3b.pack()
@@ -127,5 +127,20 @@ class optionsFrame(Frame):
                 x=772.0,
                 y=16.0,
                 width=35.0,
+                height=35.0
+            )
+
+            OPTIONS = ["Showcase My Network"] + controller.getNetwork()
+
+            variable = StringVar(canvasOptions)
+            if (len(OPTIONS) > 0):
+                variable.set(OPTIONS[0]) # default value
+
+            w = OptionMenu(canvasOptions, variable, *OPTIONS)
+            w.pack()
+            w.place(
+                x=500.0,
+                y=475.0,
+                width=150.0,
                 height=35.0
             )

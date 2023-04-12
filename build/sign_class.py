@@ -159,7 +159,7 @@ class signFrame(Frame):
                 image=buttonSign_6,
                 borderwidth=0,
                 highlightthickness=0,
-                command=lambda: controller.Signup,
+                command=controller.Signup,
                 relief="flat"
             )
             buttonSign_6b.pack()

@@ -142,3 +142,47 @@ class homeFrame(Frame):
                 height=40.875
             )
 
+            #==================================Navigation Menu
+
+            bar = Menu(self)
+            window1 = Menu(bar, tearoff = 0)
+            bar.add_cascade(label ='Useful Links', menu = window1)
+            window1.add_command(label ='General', command = None)
+            window1.add_command(label ='Browse InCollege', command = lambda: controller.changePage("undoneFrame"))
+            window1.add_command(label ='Business Solutions', command = lambda: controller.changePage("undoneFrame"))
+            window1.add_command(label ='Directories', command = lambda: controller.changePage("undoneFrame"))
+            window1.add_separator()
+            window1.add_command(label ='Exit', command = controller.destroy)
+
+
+            window2 = Menu(bar, tearoff = 0)
+            bar.add_cascade(label ='InCollege Important Links', menu = window2)
+            window2.add_command(label ='Copyright Notice', command = None)
+            window2.add_command(label ='About', command = None)
+            window2.add_command(label ='Accessibility', command = None)
+            window2.add_command(label ='User Agreement', command = None)
+            window2.add_command(label ='Privacy Policy', command = None)
+            window2.add_command(label ='Cookie Policy', command = None)
+            window2.add_command(label ='Copyright Policy', command = None)
+            window2.add_command(label ='Brand Policy', command = None)
+            window2.add_command(label ='Guest Controls', command = None)
+            window2.add_command(label ='Languages', command = None)
+            window2.add_separator()
+            window2.add_command(label ='Exit', command = controller.destroy)
+
+            #The General group (Dropdown Element). This provides links to Sign Up, Help Center, About, Press, Blog, Careers, and Developers.
+
+            window3 = Menu(bar, tearoff = 0)
+            bar.add_cascade(label ='General', menu = window3)
+            window3.add_command(label ='Sign Up', command = lambda: controller.changePage("signFrame"))
+            window3.add_command(label ='Help Center', command = lambda: controller.changePage("undoneFrame"))
+            window3.add_command(label ='About', command = lambda: controller.changePage("undoneFrame"))
+            window3.add_command(label ='Press', command = lambda: controller.changePage("undoneFrame"))
+            window3.add_command(label ='Blog', command = lambda: controller.changePage("undoneFrame"))
+            window3.add_command(label ='Careers', command = lambda: controller.changePage("undoneFrame"))
+            window3.add_command(label ='Developers', command = lambda: controller.changePage("undoneFrame"))
+            window3.add_separator()
+            window3.add_command(label ='Exit', command = controller.destroy)
+
+            controller.config(menu=bar)
+

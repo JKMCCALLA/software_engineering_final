@@ -1,6 +1,7 @@
 #===================================Library Definitions
 from tkinter import *
 from tkinter import Tk
+from tkinter import messagebox
 from login_class import homeFrame
 from sign_class import signFrame
 from options_class import optionsFrame
@@ -8,6 +9,7 @@ from skills_class import skillsFrame
 from undone_class import undoneFrame
 from job_class import jobFrame
 from post_class import postFrame
+from friend_class import friendFrame
 import sqlite3
 
 class windows(Tk):
@@ -41,7 +43,7 @@ class windows(Tk):
             self.frames = {}
 
             #Adding the potential frames to the dictionary
-            for F in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame):            
+            for F in (homeFrame, optionsFrame, skillsFrame, undoneFrame, signFrame, jobFrame, postFrame, friendFrame):            
                 frame = F(container, self)
                 self.frames[F] = frame
                 frame.grid(row=0,column=0, sticky='nsew')
@@ -68,6 +70,8 @@ class windows(Tk):
                 self.nextPage(jobFrame)
             if (cont == "postFrame"):
                 self.nextPage(postFrame)
+            if (cont == "friendFrame"):
+                self.nextPage(friendFrame)
     
         def Database(self):
             global conn, cursor
@@ -101,20 +105,30 @@ class windows(Tk):
             self.Database()
             cursor.execute("SELECT * FROM member")
             rows = cursor.fetchall()
-            if (len(rows) < 5):
+            if (len(rows) < 10):
+                for row in rows:
+                    username, password, first, last = row
+                    if (username == self.USERNAME.get()):
+                        cursor.close()
+                        conn.close()
+                        messagebox.showinfo(message="Username already exists")
+                        return
                 if (self.USERNAME.get() == "" or self.FIRST.get() == "" or self.LAST.get() == ""):
-                    print("Please complete the required field!")
+                    messagebox.showinfo(message="Please complete the required field!")
                 else:
-                    if (self.isSignupInfoValid(self)):
+                    if (self.isSignupInfoValid()):
                         sql = ''' INSERT INTO member(username, first, last) VALUES (?,?,?) '''
                         task = (self.USERNAME.get(), self.FIRST.get(), self.LAST.get())
                         cursor.execute(sql, task)
                         conn.commit()
+                        messagebox.showinfo(message="Account successfully created.")
                         self.nextPage(homeFrame)
+                    else:
+                        messagebox.showinfo(message="Invalid password")
                 cursor.close()
                 conn.close()
             else:
-                print("Maximum number of records in database \n")
+                messagebox.showinfo(message="Maximum number of records in database \n")
                 cursor.close()
                 conn.close()
 
@@ -135,6 +149,19 @@ class windows(Tk):
                 conn.close()
             else:
                 print("Maximum number of records in database \n")
+
+        def FindPerson(self):
+            self.Database()
+            if self.FIRST.get() == "" or self.LAST.get() == "":
+                print("Please complete the required field")
+            else:
+                cursor.execute("SELECT * FROM member where first = ? AND last = ?", [(self.FIRST.get()),(self.LAST.get())])
+                if cursor.fetchone() is not None:
+                    print("They are a part of the InCollege system")
+                else:
+                    print("They are not yet a part of the InCollege system yet")
+            cursor.close()
+            conn.close()
 
         def DeleteJob(self, title):
             self.Database()
@@ -176,6 +203,12 @@ class windows(Tk):
             cursor.execute("SELECT * FROM users WHERE status = ?", ["online"])
             rows = cursor.fetchall()
             return rows
+        
+        def getNetwork(self):
+            self.Database()
+            cursor.execute("SELECT first, last FROM member")
+            rows = cursor.fetchall()
+            return rows
 
         def isSignupInfoValid(self):
             
@@ -183,7 +216,7 @@ class windows(Tk):
             containsUpper = False
             containsNumber = False
             containsSpecialCharacter = False
-            finalBool = False
+            finalBool = True
 
             for letter in password:
                 if letter.isupper():
@@ -206,8 +239,7 @@ class windows(Tk):
                 print('Password doesn\'t contain a special character')
                 finalBool = False
 
-            #  return finalBool // Enabled when the SignUp option has a password field added
-            return True 
+            return True #Enabled when the SignUp option has a password field added
 
 #==============================================Main Method
 if __name__ == '__main__':
