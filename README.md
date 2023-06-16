@@ -2,6 +2,7 @@
 
 ## Project Notes/References
 
+Figma Example Link: https://www.figma.com/file/8yQ1JR6MSSCsokH7FCzNgF/Prototyping-in-Figma?type=design&node-id=0%3A1&t=saVTIRzObe8r9W1d-1
 Figma UI Share Link: https://www.figma.com/file/wvoJ8FcIMH0l7u0Ib11YmZ/LogIn-Page?node-id=0%3A1&t=8KeNgn5TPiVpjY0T-1 <br>
 Tkinter Designer (Helper Repo): https://github.com/ParthJadhav/Tkinter-Designer <br>
 SQLite Installer: https://sqlitebrowser.org/dl/ <br>
